@@ -1,0 +1,9 @@
+.nav-right p {
+    border: 1px solid black;
+    display: inline;
+    padding: 10px 20px;
+}
+.nav-right {
+    justify-self: center;
+    align-self: center;
+}

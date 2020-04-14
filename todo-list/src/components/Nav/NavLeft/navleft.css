@@ -1,0 +1,9 @@
+.nav-left {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.nav-left p {
+    display: inline;
+    margin-left: 10px;
+}

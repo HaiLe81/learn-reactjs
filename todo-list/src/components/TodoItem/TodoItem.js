@@ -1,18 +1,18 @@
-import React, { Component } from 'react'
-import './TodoItem.css'
-class TodoItem extends Component {
-    render() {
-        const  { item }  = this.props;
-        let className = 'TodoItem'
-        if(!item.isComplete){
-            className += ' TodoItem-complete'
-        }
-        return(
-            <div className={className}>
-                <p>{this.props.item.title}</p>
-            </div>
-        );
-    }
+import React from 'react'
+import './TodoItem.css';
+import classnames from 'classnames';
+
+let TodoItem = (props) => {
+
+    const { item, onClick } = props;
+
+    return (
+        <div onClick={onClick} className={classnames('TodoItem', {
+            'TodoItem-complete': item.isComplete
+        })}>
+            <p>{props.item.title}</p>
+        </div>
+    );
 }
 
 export default TodoItem;

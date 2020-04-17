@@ -1,6 +1,46 @@
 .App {
-  text-align: center;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #4d4d44;
+  border: 1px solid #eee;
 }
+.App .Header {
+  padding: 10px 5px;
+  display: flex;
+}
+
+.App .Header input {
+  font-family: 'Helvetica Nuee',
+  Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  padding-left: 10px;
+  width: 100%;
+  border: none;
+}
+
+.App .Header input:focus {
+  outline: none;
+}
+
+.App .Footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.App .Footer button {
+  width: 20px;
+  margin-left: 10px;
+  border-radius: 5px;
+}
+
+.App .Footer .item:nth-child(1) { flex-grow: 1; }
+.App .Footer .item:nth-child(2) { flex-grow: 3; }
+.App .Footer .item:nth-child(3) { flex-grow: 3; }
+.App .Footer .item:nth-child(4) { flex-grow: 3; }
+.App .Footer .item:nth-child(5) { flex-grow: 3; }
 
 .App-logo {
   height: 40vmin;

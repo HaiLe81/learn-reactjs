@@ -7,9 +7,9 @@ import tick from './images/down-arrow.svg';
 
 function App() {
   let todoItem = [
-    { title: 'Hai dep Try', isComplete: true },
+    { title: 'Hai dep Try', isComplete: false },
     { title: "Hai Hoc Gioi", isComplete: true },
-    { title: 'Hai moi mua xe moi', isComplete: true }
+    { title: 'Hai moi mua xe moi', isComplete: false }
   ]
   let [state, setState] = useState({ todoItem });
   let [newItem, setNewItem] = useState({ newItem: '' });
@@ -53,13 +53,27 @@ function App() {
     }
   }
 
-  function onChange(e){
+  function onChange(e) {
     setNewItem({
       newItem: e.target.value
     })
   }
 
   function onChangeStatusAll() {
+    let todoList = state.todoItem;
+
+    let result = todoList.find(x => x.isComplete === false)
+    let value;
+    if(result !== -1){
+       value = true;
+    } else {
+       value = false
+    }
+    
+    setState({
+      todoItem: todoList.map
+    })
+    console.log('TodoItem', state.todoItem)
 
   }
 
@@ -82,7 +96,7 @@ function App() {
         <button className="item">All</button>
         <button className="item">Active</button>
         <button className="item">Completed</button>
-        <div className="item"/>
+        <div className="item" />
       </div>
       {/* <Nav/> */}
       {/* <Login/> */}

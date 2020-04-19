@@ -20,6 +20,7 @@ function App() {
     setState({
       todoItem: todoItems
     })
+    console.log('clicked1', state.todoItem)
   }
 
   function onKeyUp(e) {
@@ -108,6 +109,16 @@ function App() {
     setState({
       todoItem: newArr
     })
+    console.log('completed', state.todoItem)
+  }
+
+  function handlerFilterAll() {
+    // use immutability
+    // let todoList = [...state.todoItem]
+    console.log('arr', todoItem)
+    setState({
+      todoItem: todoItem
+    })
   }
 
   return (
@@ -126,7 +137,7 @@ function App() {
       {state.todoItem.length === 0 && 'Nothing Here'}
       <div className="Footer">
         <p className="item">count selected</p>
-        <button className="item">All</button>
+        <button onClick={() => handlerFilterAll()} className="item">All</button>
         <button onClick={() => handlerFilterItemActive()}className="item">Active</button>
         <button onClick={() => handlerFilterItemCompleted()} className="item">Completed</button>
         <div className="item" />

@@ -98,6 +98,18 @@ function App() {
     })
   }
 
+  function handlerFilterItemCompleted() {
+    // use immutability
+    let todoList = [...state.todoItem]
+    
+    // filter item have isComplete = false (completed)
+    
+    let newArr = filterList(todoList, false)
+    setState({
+      todoItem: newArr
+    })
+  }
+
   return (
     <div className="App">
       <div className="Header">
@@ -116,7 +128,7 @@ function App() {
         <p className="item">count selected</p>
         <button className="item">All</button>
         <button onClick={() => handlerFilterItemActive()}className="item">Active</button>
-        <button className="item">Completed</button>
+        <button onClick={() => handlerFilterItemCompleted()} className="item">Completed</button>
         <div className="item" />
       </div>
       {/* <Nav/> */}

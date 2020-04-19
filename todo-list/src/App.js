@@ -13,8 +13,7 @@ function App() {
   ]
   let [state, setState] = useState({ todoItem });
   let [newItem, setNewItem] = useState({ newItem: '' });
-  function onChangeStatusItem(item, index) {
-    console.log(index)
+  function onChangeStatusItem(index) {
     const todoItems = [...state.todoItem] 
     // const isComplete = item.isComplete
     todoItems[index].isComplete = !todoItems[index].isComplete
@@ -60,6 +59,7 @@ function App() {
   }
 
   function onChangeStatusAll() {
+    // use immutability
     let todoList = [...state.todoItem] 
     let result = todoList.filter(x => x.isComplete === true)
     console.log(result.length)
@@ -75,11 +75,27 @@ function App() {
       mapList(todoList, true)
     }
 
-    console.log(todoList)
     setState({
       todoItem: todoList
     })
-    console.log(state.todoItem)
+  }
+
+  function filterList(todoList, bool) {
+    let a = todoList.filter(item => item.isComplete===bool)
+    return a;
+  }
+
+  function handlerFilterItemActive() {
+    // use immutability
+    let todoList = [...state.todoItem] 
+
+    // filter item have isComplete = true
+    // let newArr = todoList.filter(x => x.isComplete===true)
+    
+    let newArr = filterList(todoList, true)
+    setState({
+      todoItem: newArr
+    })
   }
 
   return (
@@ -94,12 +110,12 @@ function App() {
           onKeyUp={onKeyUp} />
       </div>
       {state.todoItem.length > 0 && state.todoItem.map((item, index) =>
-        <TodoItem key={index} item={item} onClick={() => onChangeStatusItem(item, index)} />)}
+        <TodoItem key={index} item={item} onClick={() => onChangeStatusItem(index)} />)}
       {state.todoItem.length === 0 && 'Nothing Here'}
       <div className="Footer">
         <p className="item">count selected</p>
         <button className="item">All</button>
-        <button className="item">Active</button>
+        <button onClick={() => handlerFilterItemActive()}className="item">Active</button>
         <button className="item">Completed</button>
         <div className="item" />
       </div>

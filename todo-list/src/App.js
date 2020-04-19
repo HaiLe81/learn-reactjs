@@ -7,25 +7,19 @@ import tick from './images/down-arrow.svg';
 
 function App() {
   let todoItem = [
-    { title: 'Hai dep Try', isComplete: false },
-    { title: "Hai Hoc Gioi", isComplete: true },
+    { title: 'Hai dep Try', isComplete: true },
+    { title: "Hai Hoc Gioi", isComplete: false },
     { title: 'Hai moi mua xe moi', isComplete: false }
   ]
   let [state, setState] = useState({ todoItem });
   let [newItem, setNewItem] = useState({ newItem: '' });
-
   function onChangeStatusItem(item, index) {
-    const todoItems = state.todoItem
-    const isComplete = item.isComplete
+    console.log(index)
+    const todoItems = [...state.todoItem] 
+    // const isComplete = item.isComplete
+    todoItems[index].isComplete = !todoItems[index].isComplete
     setState({
-      todoItem: [
-        ...todoItems.slice(0, index),
-        {
-          ...item,
-          isComplete: !isComplete
-        },
-        ...todoItems.slice(index + 1)
-      ]
+      todoItem: todoItems
     })
   }
 
@@ -59,28 +53,56 @@ function App() {
     })
   }
 
-  function onChangeStatusAll() {
-    let todoList = state.todoItem;
-
-    let result = todoList.find(x => x.isComplete === false)
-    let value;
-    if(result !== -1){
-       value = true;
-    } else {
-       value = false
-    }
-    
-    setState({
-      todoItem: todoList.map
+  function mapList(todoList, bool) {
+    todoList.map(list => {
+      list.isComplete = bool
     })
-    console.log('TodoItem', state.todoItem)
+  }
+
+  function onChangeStatusAll() {
+    let todoList = [...state.todoItem] 
+    let result = todoList.filter(x => x.isComplete === true)
+    console.log(result.length)
+    if (result.length === todoList.length) {
+      // todoList.map(list => {
+      //   list.isComplete = false
+      // })
+      mapList(todoList, false)
+    } else if (result.length < todoList.length){
+      // todoList.map(list => {
+      //   list.isComplete = true
+      // })
+      mapList(todoList, true)
+    }
+
+    console.log(todoList)
+    setState({
+      todoItem: todoList
+    })
+    console.log(state.todoItem)
+    // let value;
+    // let result = todoList.find(x => x.isComplete === false)
+    // console.log('result', result)
+    // if (result !== -1) {
+    //   value = true;
+    // } else {
+    //   value = false
+    // }
+
+    // // use immutability
+    // // setState({
+    // //   todoItem: [
+    // //     { ...todoList.title, isComplete: value }
+    // //   ]
+    // // })
+    // console.log('TodoItem', state.todoItem)
 
   }
 
   return (
     <div className="App">
       <div className="Header">
-        <img onClick={onChangeStatusAll} src={tick} width={32} height={32} alt="not found" />
+        <img onClick={() => onChangeStatusAll()} src={tick} width={32} height={32} alt="not found" />
         <input
           type="text"
           placeholder="What needs to be done?"

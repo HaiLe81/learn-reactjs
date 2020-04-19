@@ -80,23 +80,6 @@ function App() {
       todoItem: todoList
     })
     console.log(state.todoItem)
-    // let value;
-    // let result = todoList.find(x => x.isComplete === false)
-    // console.log('result', result)
-    // if (result !== -1) {
-    //   value = true;
-    // } else {
-    //   value = false
-    // }
-
-    // // use immutability
-    // // setState({
-    // //   todoItem: [
-    // //     { ...todoList.title, isComplete: value }
-    // //   ]
-    // // })
-    // console.log('TodoItem', state.todoItem)
-
   }
 
   return (
